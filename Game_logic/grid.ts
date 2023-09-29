@@ -1,3 +1,5 @@
+//These enums are being used to store the default game size and Number of bombs
+//Based on the Difficulty of Easy, Medium, and Hard
 enum GameDifficulty {
     Easy = 100, //This is going to be 10x10
     Medium = 252, //This is going to be 14x18
@@ -21,7 +23,7 @@ for(let i = 0; i < row; i++){
     countGrid[i] = new Array(col);
 }
 
-//Bomb Grid creation 
+//Bomb Grid creation (Need to make this as an exported function)
 let bombCount: number = NumOfBombs.Easy;
 //This loop is to insert all of the bombs;
 for(let i = 0; i < bombCount; i++){
@@ -49,3 +51,39 @@ console.log(`Number of bombs are ${count}`);
 // let currCol = (i) % col;
 
 //Created the count grid here
+
+for(let i = 0; i < row * col; i++){
+    let currRow = Math.floor((i) / row);
+    let currCol = (i) % col;
+    let count: number = 0;
+
+    if(bombGrid[currRow][currCol] == true){
+        continue;
+    }
+    if(currRow != 0 && bombGrid[currRow-1][currCol] == true){
+        count++;
+    }
+    if(currRow != row-1 && bombGrid[currRow+1][currCol] == true){
+        count++;
+    }
+    if(currCol != 0 && bombGrid[currRow][currCol-1] == true){
+        count++;
+    }
+    if(currCol != col-1 && bombGrid[currRow][currCol+1] == true){
+        count++;
+    }
+    if((currRow != 0 && currCol != 0) && bombGrid[currRow-1][currCol-1] == true){
+        count++;
+    }
+    if((currRow != row-1 && currCol != 0) && bombGrid[currRow+1][currCol-1] == true){
+        count++;
+    }
+    if((currRow != 0 && currCol != col-1) && bombGrid[currRow-1][currCol+1]){
+        count++;
+    }
+    if((currRow != row-1 && currCol != col-1) && bombGrid[currRow+1][currCol+1]){
+        count++;
+    }
+    countGrid[currRow][currCol] = count; 
+    console.log(`This is the count for element ${currRow},${currCol}: ${count}`);
+}
