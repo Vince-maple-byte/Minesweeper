@@ -63,8 +63,6 @@ export function createBombGrid(gameDifficulty: string): boolean[][]{
     return bombGrid;
 }
 
-createBombGrid("Easy");
-
 export function createCountGrid(gameDifficulty: string, bombGrid: boolean[][]): number[][]{
     //Creating and initializing the 2d array with a for loop since typescript doesn't do that by default
     let row: number = 0;
